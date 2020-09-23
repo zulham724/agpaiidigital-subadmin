@@ -71,6 +71,7 @@ export default {
                 this.$swal.showLoading()
                 // this.loading = true
                 this.$store.dispatch('Auth/login', this.credential).then(() => {
+                    this.$swal.close();
                     this.$router.push('/home')
                     //window.(history).pushState(null, null, window.location.href)
                 }).catch(() => {
@@ -83,7 +84,7 @@ export default {
                 }).finally(() => {
                     this.loading = false
                     this.$swal.hideLoading()
-                    this.$swal.close();
+                    //this.$swal.close();
                 })
 
             }

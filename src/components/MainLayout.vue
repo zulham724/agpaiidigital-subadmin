@@ -20,6 +20,15 @@
                         <v-list-item-title>Contact</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item link @click="logout">
+                    <v-list-item-action>
+                        <v-icon>mdi-account-arrow-right</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Logout</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
             </v-list-item-group>
         </v-list>
     </v-navigation-drawer>
@@ -67,7 +76,18 @@ export default {
         drawer: null,
         item: 0
     }),
+    methods: {
+        logout: function () {
+            this.$store.commit("Auth/logout");
+            this.$router.push({
+                name: 'Login'
+            })
+        }
+    },
     mounted() {
+        this.$router.push({
+            name: 'Home'
+        })
         //console.log(process.ENV.VUE_APP_TITLE);
         // this.$swal.fire(
         //     'Good job!',
@@ -76,6 +96,7 @@ export default {
         // )
     },
     created: function () {
+
         // this.$store.dispatch("User/getUsersList").then(res => {
         //     console.log(res)
         // })

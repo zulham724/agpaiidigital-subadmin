@@ -181,17 +181,17 @@ export default {
         this.$store.dispatch("EducationalLevel/index").then(res => {
             this.educational_level_options = [{
                 name: 'Semua',
-                id: -1
+                id: '-'
             }, ...res.data];
-            this.filter_options.educational_level = -1
+            //this.filter_options.educational_level = ''
 
         })
         this.$store.dispatch("User/getUserRoles").then(res => {
             this.role_options = [{
                 display_name: 'Semua',
-                id: -1
+                id: '-'
             }, ...res.data];
-            this.filter_options.role = -1
+            //this.filter_options.role = -1
 
         })
         this.$store.dispatch("Province/index").then(res => {
@@ -201,7 +201,7 @@ export default {
                 },
                 ...res.data
             ];
-            this.filter_options.province = [-1]
+            //this.filter_options.province = [-1]
 
         })
     },
@@ -251,7 +251,7 @@ export default {
                 school_status: '-',
                 educational_level: '-',
                 role: '-',
-                province: []
+                province: [-1]
             },
             select: null,
             dialog: false,
@@ -283,13 +283,13 @@ export default {
                     value: 'point'
                 },
                 {
-                    text: 'Status member',
+                    text: 'Waktu aktivasi',
                     value: 'email_verified_at'
                 },
-                {
-                    text: 'Action',
-                    value: 'action'
-                }
+                // {
+                //     text: 'Action',
+                //     value: 'action'
+                // }
             ],
         }
     }
