@@ -1,13 +1,13 @@
 <template>
 <div>
     <div class="form-body">
-        <div class="website-logo">
+        <!--<div class="website-logo">
             <a href="index.html">
                 <div class="logo">
                     <img class="logo-size" src="./../assets/images/logo-light.svg" alt="">
                 </div>
             </a>
-        </div>
+        </div>-->
         <div class="row">
             <div class="img-holder">
                 <div class="bg"></div>

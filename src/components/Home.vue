@@ -132,47 +132,53 @@ export default {
     name: 'HelloWorld',
     methods: {
         filterData: function () {
-            this.getDataFromApi();
+            this.getDataFromApi().then(() => {
+                this.dialog = false;
+            });
         },
         getDataFromApi: function () {
-            this.loading = true;
+            return new Promise((resolve) => {
+                this.loading = true;
 
-            this.$store.dispatch("User/getUsersListPagination", {
-                options: this.options,
-                filter_options: this.filter_options
-            }).then(res => {
-                const {
-                    sortBy,
-                    sortDesc,
-                    // page,
-                    // itemsPerPage
-                } = this.options
-                this.totalData = res.totalUser;
-                this.items = res.data.data;
+                this.$store.dispatch("User/getUsersListPagination", {
+                    options: this.options,
+                    filter_options: this.filter_options
+                }).then(res => {
+                    const {
+                        sortBy,
+                        sortDesc,
+                        // page,
+                        // itemsPerPage
+                    } = this.options
+                    this.totalData = res.totalUser;
+                    this.items = res.data.data;
 
-                if (sortBy.length === 1 && sortDesc.length === 1) {
-                    this.items = this.items.sort((a, b) => {
-                        const sortA = a[sortBy[0]]
-                        const sortB = b[sortBy[0]]
+                    if (sortBy.length === 1 && sortDesc.length === 1) {
+                        this.items = this.items.sort((a, b) => {
+                            const sortA = a[sortBy[0]]
+                            const sortB = b[sortBy[0]]
 
-                        if (sortDesc[0]) {
-                            if (sortA < sortB) return 1
-                            if (sortA > sortB) return -1
-                            return 0
-                        } else {
-                            if (sortA < sortB) return -1
-                            if (sortA > sortB) return 1
-                            return 0
-                        }
-                    })
-                }
+                            if (sortDesc[0]) {
+                                if (sortA < sortB) return 1
+                                if (sortA > sortB) return -1
+                                return 0
+                            } else {
+                                if (sortA < sortB) return -1
+                                if (sortA > sortB) return 1
+                                return 0
+                            }
+                        })
+                    }
 
-                // if (itemsPerPage > 0) {
-                //     this.items = this.items.slice((page - 1) * itemsPerPage, page * itemsPerPage)
-                // }
-            }).finally(() => {
-                this.loading = false;
-            });
+                    // if (itemsPerPage > 0) {
+                    //     this.items = this.items.slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                    // }
+                }).finally(() => {
+                    this.loading = false;
+                    resolve()
+                });
+
+            })
 
         },
     },
