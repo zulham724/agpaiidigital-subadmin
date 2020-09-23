@@ -27,7 +27,7 @@ const routes = [
     component: () => import('../components/MainLayout.vue'),
     children:[
       {
-        path:'/home',
+        path:'',
         name:'Home',
         component:() => import('../components/Home.vue')
       },
@@ -63,7 +63,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  //mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
