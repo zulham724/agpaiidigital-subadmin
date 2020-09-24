@@ -85,9 +85,9 @@ export default {
         }
     },
     mounted() {
-        this.$router.push({
-            name: 'Home'
-        })
+        // this.$router.push({
+        //     name: 'Home'
+        // })
         //console.log(process.ENV.VUE_APP_TITLE);
         // this.$swal.fire(
         //     'Good job!',

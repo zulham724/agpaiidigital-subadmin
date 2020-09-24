@@ -72,7 +72,7 @@ export default {
                 // this.loading = true
                 this.$store.dispatch('Auth/login', this.credential).then(() => {
                     this.$swal.close();
-                    this.$router.push('/home')
+                    this.$router.push('/')
                     //window.(history).pushState(null, null, window.location.href)
                 }).catch(() => {
                     //this.$q.notify('Email atau Password salah')
